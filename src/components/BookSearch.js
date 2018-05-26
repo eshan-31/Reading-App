@@ -24,18 +24,38 @@ class BookSearch extends Component {
     return val
   }
 
+  updateTerm = query => { this.setState({query})
+    const maxBooks =25 ;
+      BooksAPI.search(query, maxBooks).then((result) => {
+        if(result===undefined || (result.error)){
+          this.setState({queryBooks: []})
+        } else{
+        result = this.searchBooks(result)
+        /*set the state of the queryBooks*/
+        this.setState({queryBooks: result})
+      }
+      })
+  }
+
+
+
   render() {
     return (
       <div className="search-books">
         <div className="search-books-bar">
           <Link className="close-search" to="/">Close</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author" value={this.state.query}   />
+            <input type="text" placeholder="Search by title or author" value={this.state.query}  onChange={event => this.updateTerm(event.target.value)} />
           </div>
         </div>
         <div className="search-books-results">
         <ol className="books-grid">
-            
+            {this.state.queryBooks && ( this.state.queryBooks.map((book) => (
+                <li key={book.id}>
+                  <Book updateBook={this.props.updateBook} book={book} />
+                </li>
+              ))
+            )}
           </ol>
         </div>
       </div>
