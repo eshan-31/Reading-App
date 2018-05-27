@@ -1,14 +1,14 @@
 import React from 'react'
 import Book from './Book'
-import startCase from "lodash.startcase";
+import titleCase from "lodash.startcase"; //capitalizes staring letter of each word
 import Head from './head'
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; //to link the search page
 
 
 
 
 function ListBooks({ books, handleChange }) {
-  var shelves = ["currentlyReading", "wantToRead", "read"];
+  var shelves = ["currentlyReading", "wantToRead", "read"]; 
   return ( <div className="list-books">
     <Head />
       <div className="open-search">
@@ -17,7 +17,7 @@ function ListBooks({ books, handleChange }) {
       {shelves.map(shelf => {return (<div key={shelf} className="list-books-content">
            <div>
               <div className="bookshelf">
-                 <h2 className="bookshelf-title">{startCase(shelf)}</h2>
+                 <h2 className="bookshelf-title">{titleCase(shelf)}</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
                     {books.filter(book => book.shelf === shelf).map(book => <Book key={book.id}   book={book} handleChange={handleChange}

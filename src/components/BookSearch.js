@@ -1,15 +1,16 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom' //to link to the main page
 import Book from './Book'
 import * as BooksAPI from '../BooksAPI'
 
 class BookSearch extends Component {
   state = {
-    query: '',
-    qBooks: []
+    query: '', //initial search query
+    qBooks: [] //books showing inital books shown
   }
 
   findBooks = (val) => {
+    //set the default shelves
     for(let book of Array.from(val))
     {
        book.shelf='none'
@@ -24,9 +25,9 @@ class BookSearch extends Component {
     return val
   }
 
+//show the search results based on the query
   updateTerm = query => { this.setState({query})
-    const maxBooks =25 ;
-      BooksAPI.search(query, maxBooks).then((result) => {
+      BooksAPI.search(query).then((result) => {
         if(result===undefined || (result.error)){
           this.setState({qBooks: []})
         } else{
@@ -35,7 +36,6 @@ class BookSearch extends Component {
       }
       })
   }
-
 
 
   render() {
