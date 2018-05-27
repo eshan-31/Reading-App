@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import Book from './Book'
 import startCase from "lodash.startcase";
 import Head from './head'
+import { Link } from "react-router-dom";
+
 
 
 
@@ -10,7 +12,7 @@ function ListBooks({ books, handleChange }) {
   return ( <div className="list-books">
     <Head />
       <div className="open-search">
-          Add Books
+          <Link to="/search" alt="search books">Add Books</Link>
       </div>
       {shelves.map(shelf => {return (<div className="list-books-content">
            <div>
