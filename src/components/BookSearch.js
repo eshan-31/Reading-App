@@ -6,10 +6,10 @@ import * as BooksAPI from '../BooksAPI'
 class BookSearch extends Component {
   state = {
     query: '',
-    queryBooks: []
+    qBooks: []
   }
 
-  searchBooks = (val) => {
+  findBooks = (val) => {
     for(let book of Array.from(val))
     {
        book.shelf='none'
@@ -28,11 +28,10 @@ class BookSearch extends Component {
     const maxBooks =25 ;
       BooksAPI.search(query, maxBooks).then((result) => {
         if(result===undefined || (result.error)){
-          this.setState({queryBooks: []})
+          this.setState({qBooks: []})
         } else{
-        result = this.searchBooks(result)
-        /*set the state of the queryBooks*/
-        this.setState({queryBooks: result})
+        result = this.findBooks(result)
+        this.setState({qBooks: result})
       }
       })
   }
@@ -50,7 +49,7 @@ class BookSearch extends Component {
         </div>
         <div className="search-books-results">
         <ol className="books-grid">
-            {this.state.queryBooks && ( this.state.queryBooks.map((book) => (
+            {this.state.qBooks && ( this.state.qBooks.map((book) => (
                 <li key={book.id}>
                   <Book handleChange={this.props.handleChange} book={book} />
                 </li>

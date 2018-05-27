@@ -22,7 +22,7 @@ body, .app {
 }
 
 .list-books-content {
-  padding: 0 0 80px;
+  padding: 0 0 40px;
   flex: 1;
 }
 
@@ -120,7 +120,8 @@ body, .app {
 }
 
 .book {
-  width: 140px;
+  width: 160px;
+  padding: 10px;
 }
 .book-title,
 .book-authors {
