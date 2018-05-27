@@ -32,9 +32,6 @@ booksAvailable = id => {
   };
 
 handleChange = async (book, shelf) => {
-    // We update the state immediately and fix it later if there is an issue.
-    // So we save the state in case the API messes up.
-    const oldState = JSON.parse(JSON.stringify(this.state));
     const availableId = this.booksAvailable(book.id);
     if (availableId !== -1) {
       this.setState(state => {
@@ -49,15 +46,6 @@ handleChange = async (book, shelf) => {
       });
     }
   };
-
-  async componentDidMount() {
-    try {
-      const books = await BooksAPI.getAll();
-      this.setState({ books });
-    } catch (e) {
-      console.error(`There was an API error: ${e}`);
-    }
-  }
 
   render() {
     return (

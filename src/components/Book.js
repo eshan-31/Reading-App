@@ -2,7 +2,7 @@ import React from "react";
 
 
 function Book({ book, handleChange }) {
-  const { id, imageLinks, shelf, title, authors } = book;
+  const { imageLinks, shelf, title, authors } = book;
   return (
      <div className="book">
            <div className="book-top">
