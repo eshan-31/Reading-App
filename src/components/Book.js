@@ -14,7 +14,7 @@ function Book({ book, handleChange }) {
               }}  />
           <div className="book-shelf-changer"  style={{ backgroundColor: shelf === "none" ? "#ccc" : "#60ac5d"
             }}  >
-            <select value={shelf}>
+            <select value={shelf} onChange={e => handleChange(book, e.target.value)}>
               <option value="none" disabled>Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
