@@ -14,7 +14,7 @@ function ListBooks({ books, handleChange }) {
       <div className="open-search">
           <Link to="/search" alt="search books">Add Books</Link>
       </div>
-      {shelves.map(shelf => {return (<div className="list-books-content">
+      {shelves.map(shelf => {return (<div key={shelf} className="list-books-content">
            <div>
               <div className="bookshelf">
                  <h2 className="bookshelf-title">{startCase(shelf)}</h2>
