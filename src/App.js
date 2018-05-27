@@ -67,7 +67,8 @@ handleChange = async (book, shelf) => {
  />)}/>
         </Switch>
         <Switch>
-        	 <Route path='/search' render={() => (<BooksSearch books={this.state.books} />)}/>
+        	 <Route path='/search' render={() => (<BooksSearch books={this.state.books} handleChange={this.handleChange}
+/>)}/>
         </Switch>
 				</div>    )
 

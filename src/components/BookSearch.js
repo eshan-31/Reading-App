@@ -52,7 +52,7 @@ class BookSearch extends Component {
         <ol className="books-grid">
             {this.state.queryBooks && ( this.state.queryBooks.map((book) => (
                 <li key={book.id}>
-                  <Book updateBook={this.props.updateBook} book={book} />
+                  <Book handleChange={this.props.handleChange} book={book} />
                 </li>
               ))
             )}
