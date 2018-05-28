@@ -26,7 +26,11 @@ class BookSearch extends Component {
   }
 
 //show the search results based on the query
-  updateTerm = query => { this.setState({query})
+  async updateTerm(query)
+{ this.setState({query})
+  if(query===""){this.setState({qBooks: []});return;}
+  else{
+
       BooksAPI.search(query).then((result) => {
         if(result===undefined || (result.error)){
           this.setState({qBooks: []})
@@ -34,7 +38,8 @@ class BookSearch extends Component {
         result = this.findBooks(result)
         this.setState({qBooks: result})
       }
-      })
+    })}
+
   }
 
 
