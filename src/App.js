@@ -15,40 +15,14 @@ class BooksApp extends React.Component {
     this.setState({books})
   })
 }
-
-booksAvailable = id => {
-    return this.state.books.findIndex(book => book.id === id);
-  };
-
-//for checking if the book is already present
-  checkBook = async id => {
-    const availableId = this.booksAvailable(id);
-    if (availableId !== -1) {return Promise.resolve(this.state.books[availableId]);
-    }
-    try {
-      const book = await BooksAPI.get(id);
-      book.shelf = "none";
-      return book; //return the book if available
-    } catch (e) {
-      console.error(`Error occured: ${e}`); // if some error occurs in finding the book
-    }
-  };
-
-//function to change the shleves
+ //to change the shelves and keep the changes even when the page is refreshed
 handleChange = async (book, shelf) => {
-    const availableId = this.booksAvailable(book.id);
-    if (availableId !== -1) {
-      this.setState(state => {
-        state.books[availableId].shelf = shelf;
-        return state;
-      });
-    } else {
-      this.setState(state => {
-        book.shelf = shelf;
-        state.books.push(book);
-        return state;
-      });
-    }
+  book.shelf = shelf;
+  BooksAPI.update(book, shelf).then( ()=> {
+    let newSet = this.state.books.filter( (boo) => boo.id !== book.id)
+    newSet.push(book)
+    this.setState({books: newSet});
+  });
   };
 
   render() {
