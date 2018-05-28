@@ -20,8 +20,7 @@ function ListBooks({ books, handleChange }) {
                  <h2 className="bookshelf-title">{titleCase(shelf)}</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
-                    {books.filter(book => book.shelf === shelf).map(book => <Book key={book.id}   book={book} handleChange={handleChange}
- />
+                    {books.filter(book => book.shelf === shelf).map(book => <Book key={book.id}   book={book} handleChange={handleChange} />
                       )}
                   </ol>
                 </div>
