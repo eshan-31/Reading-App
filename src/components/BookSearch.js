@@ -28,7 +28,7 @@ class BookSearch extends Component {
 //show the search results based on the query
   async updateTerm(query)
 { this.setState({query})
-  if(query===""){this.setState({qBooks: []});return;}
+  if(query===""){this.setState({qBooks: []});document.location.reload()}
   else{
 
       BooksAPI.search(query).then((result) => {
